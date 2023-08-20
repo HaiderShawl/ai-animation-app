@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   container: {
     padding: 24,
-    height: "100%"
+    height: "100%",
+    backgroundColor: 'blue',
   },
   paragraph: {
     margin: 24,
