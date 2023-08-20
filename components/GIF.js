@@ -22,12 +22,14 @@ class GIF extends React.Component {
     this.state = {
       loading: false,
       downloading: false,
+      downloadable: false,
       prompt_start: prompts.start,
       prompt_end: prompts.end,
       uri: 'https://replicate.delivery/pbxt/XcIza6ZefTvP7kvtRk0B2LXLKnC7KawQIhaMYdep5hsCmfLAB/video.gif',
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleDownload = this.handleDownload.bind(this);
   }
 
   handleClick() {
@@ -56,6 +58,7 @@ class GIF extends React.Component {
               uri: data.output[0],
               loading: false,
               downloading: true,
+              downloadable: true,
             });
             clearInterval(interval)
           } else if (data.detail == prompts.error) {
@@ -114,6 +117,13 @@ class GIF extends React.Component {
                 onPress={this.handleClick}
                 disabled={this.state.loading || this.state.downloading}>
                 <Text style={styles.button_text}>Get GIF</Text>
+              </Pressable>
+              
+              <Pressable
+                style={styles.button}
+                onPress={this.handleDownload}
+                disabled={!this.state.downloadable}>
+                <Text style={styles.button_text}>Download GIF</Text>
               </Pressable>
 
               <Text style={styles.paragraph}>
